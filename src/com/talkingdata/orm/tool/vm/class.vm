@@ -1,0 +1,23 @@
+package ${cls.classPackage};
+
+import java.util.Date;
+
+public class ${cls.className} {
+#foreach( $col in $cls.columns )
+    private $col.propertyType $col.property;
+#end
+
+#foreach( $col in $cls.columns )
+    public $col.propertyType ${col.getMethodName}() {
+        return $col.property;
+    }
+
+#set ( $parameter = "$col.propertyType $col.property" )
+    public void ${col.setMethodName}($parameter) {
+        this.$col.property = $col.property;
+    }
+#if( $foreach.hasNext )
+
+#end
+#end
+}

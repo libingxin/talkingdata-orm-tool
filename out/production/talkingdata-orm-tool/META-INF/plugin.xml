@@ -1,0 +1,32 @@
+<idea-plugin version="2">
+    <id>com.talkingdata.orm.tool</id>
+    <name>Talking Data ORM Tool</name>
+    <version>1.0</version>
+    <vendor email="bingxin.li@tendcloud.com" url="https://www.talkingdata.com/">Talking Data</vendor>
+
+    <description><![CDATA[
+      根据选择的数据库，匹配数据库中的所有表，自动生成domain类、dao接口和mapping文件。
+      <br>
+      According to the selected database, matching all the tables of the database, automatically generate domain class, dao interface and mapping files.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      V1.0
+      Change "SHOW COLUMNS FROM table" to "SHOW COLUMNS FROM database.table".
+    ]]>
+    </change-notes>
+
+    <idea-version since-build="141.0"/>
+
+    <depends>com.intellij.modules.lang</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceInterface="com.talkingdata.orm.tool.ORMConfig" serviceImplementation="com.talkingdata.orm.tool.ORMConfig"/>
+        <projectConfigurable groupId="tools" displayName="Talking Data ORM Tool" id="preference.ORMConfigurable" instance="com.talkingdata.orm.tool.ORMConfigurable" />
+    </extensions>
+
+    <actions>
+        <action id="ORMGenerateAction" class="com.talkingdata.orm.tool.ORMGenerateAction" text="Talking Data ORM Tool">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

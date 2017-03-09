@@ -1,0 +1,17 @@
+package $cls.daoPackage;
+
+import $cls.classFullName;
+
+import java.util.List;
+
+public interface ${cls.className}Dao {
+    void add($cls.className $cls.classInstanceName);
+
+    void update($cls.className $cls.classInstanceName);
+
+    void delete(Integer id);
+
+    $cls.className read(Integer id);
+
+    List<$cls.className> query($cls.className filter);
+}

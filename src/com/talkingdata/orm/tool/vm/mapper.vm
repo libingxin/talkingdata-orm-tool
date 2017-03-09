@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+#set( $newline="
+")
+<mapper namespace="$cls.daoFullName">
+    <insert id="add" parameterType="$cls.classFullName" keyProperty="id">
+        INSERT INTO `${cls.tableName}`(
+#foreach( $col in $cls.columns )
+            `$col.columnName`#if( $foreach.hasNext ),${newline}#end
+#end
+${newline}        )
+        VALUES(
+#foreach( $col in $cls.columns )
+            #{$col.property}#if( $foreach.hasNext ), ${newline}#end
+#end
+${newline}        )
+    </insert>
+
+    <update id="update" parameterType="$cls.classFullName">
+        UPDATE `${cls.tableName}`
+        SET
+#foreach( $col in $cls.columns )
+        <if test="$col.property != null">
+            `$col.columnName` = #{$col.property}#if( $foreach.hasNext ), #end
+${newline}        </if>
+#end
+        <where>
+#foreach( $col in $cls.columns )
+#if ( $col.primaryKey == "PRI")
+            `$col.columnName` = #{$col.property}
+#end
+#end
+        </where>
+    </update>
+
+    <update id="delete" parameterType="int">
+        DELETE FROM `${cls.tableName}`
+        <where>
+#foreach( $col in $cls.columns )
+#if ( $col.primaryKey == "PRI")
+            `$col.columnName` = #{$col.property}
+#end
+#end
+        </where>
+    </update>
+
+    <sql id="SQL_COLUMN">
+#foreach( $col in $cls.columns )
+        `$col.columnName` $col.property#if( $foreach.hasNext ),${newline}#end
+#end
+${newline}    </sql>
+
+    <select id="read" resultType="$cls.classFullName" parameterType="int" useCache="false">
+        SELECT
+            <include refid="SQL_COLUMN"/>
+        FROM `${cls.tableName}`
+        <where>
+#foreach( $col in $cls.columns )
+#if ( $col.primaryKey == "PRI")
+            `$col.columnName` = #{$col.property}
+#end
+#end
+        </where>
+    </select>
+
+    <select id="query" resultType="$cls.classFullName" parameterType="$cls.classFullName" useCache="false">
+        SELECT
+            <include refid="SQL_COLUMN"/>
+        FROM `${cls.tableName}`
+        <where>
+#foreach( $col in $cls.columns )
+            <if test="$col.property != null">
+                AND `$col.columnName` = #{$col.property}
+            </if>
+#end
+        </where>
+    </select>
+</mapper>
