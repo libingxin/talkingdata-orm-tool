@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ORMConfig">
+    <option name="database" value="sdmk_om" />
+    <option name="ip" value="172.20.33.3" />
+    <option name="packageName" value="com.ice" />
+    <option name="password" value="om@tendcloud.com" />
+    <option name="port" value="3306" />
+    <option name="user" value="om" />
+  </component>
+</project>

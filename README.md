@@ -1,3 +1,12 @@
+V1.2
+Bug fix: The template not found. Because the template file is in the one jar.
+Use classloader load template stream,  use stream copy to temp file.
+
+
+V1.1
+Bug fix: file not found error.
+解决模板无法发现的问题。
+
 V1.0
 Change "SHOW COLUMNS FROM table" to "SHOW COLUMNS FROM database.table".
 

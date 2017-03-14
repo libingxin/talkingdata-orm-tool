@@ -16,6 +16,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -29,6 +30,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -160,8 +162,11 @@ public class ORMGenerateAction extends AnAction {
         FileReader fileReader = null;
         try {
             RuntimeServices runtimeServices = RuntimeSingleton.getRuntimeServices();
-            URL url = ORMGenerateAction.class.getClassLoader().getResource(vm);
-            fileReader = new FileReader(url.getFile());
+            InputStream is = ORMGenerateAction.class.getClassLoader().getResourceAsStream(vm);
+
+            File file = File.createTempFile("td_orm_file", ".tmp");
+            FileUtils.copyToFile(is, file);
+            fileReader = new FileReader(file);
 
             SimpleNode node = runtimeServices.parse(fileReader, vm);
             Template template = new Template();
