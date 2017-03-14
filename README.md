@@ -16,7 +16,6 @@ Change "SHOW COLUMNS FROM table" to "SHOW COLUMNS FROM database.table".
 According to the selected database, matching all the tables of the database, automatically generate domain class, dao interface and mapping files.
 
 作者： 冰心
-
 邮箱： bingxin.li@tendcloud.com
-
+Blog： http://happyshome.cn
 主页： https://www.talkingdata.com/
