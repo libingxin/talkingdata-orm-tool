@@ -1,8 +1,8 @@
 <idea-plugin version="2">
     <id>com.talkingdata.orm.tool</id>
-    <name>Talking Data ORM Tool</name>
-    <version>1.2</version>
-    <vendor email="bingxin.li@tendcloud.com" url="https://www.talkingdata.com/">Talking Data</vendor>
+    <name>TalkingData ORM Tool</name>
+    <version>1.3</version>
+    <vendor email="bingxin.li@tendcloud.com" url="https://www.talkingdata.com/">TalkingData</vendor>
 
     <description><![CDATA[
         根据选择的数据库，匹配数据库中的所有表，自动生成domain类、dao接口和mapping文件。
@@ -20,6 +20,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        V1.3
+        重构了部分代码
+        Part of the code reconstructed
+
         V1.2
         Bug fix: The template not found. Because the template file is in the one jar.
         Use classloader load template stream,  use stream copy to temp file.
@@ -43,7 +47,7 @@
     </extensions>
 
     <actions>
-        <action id="ORMGenerateAction" class="com.talkingdata.orm.tool.ORMGenerateAction" text="Talking Data ORM Tool">
+        <action id="ORMGenerateAction" class="com.talkingdata.orm.tool.ORMGenerateAction" text="TalkingData ORM Tool">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
     </actions>

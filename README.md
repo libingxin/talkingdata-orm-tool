@@ -1,3 +1,7 @@
+V1.3
+重构了部分代码
+Part of the code reconstructed
+
 V1.2
 Bug fix: The template not found. Because the template file is in the one jar.
 Use classloader load template stream,  use stream copy to temp file.
